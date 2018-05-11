@@ -1,0 +1,28 @@
+{% extends "course_instructor.html" %}
+
+{% block section_content %}
+<div class="container-fluid">
+  <table id="grade-table" class="table table-hover table-condensed table-bordered">
+    <thead>
+      <tr>
+        <th class="thead-light" scope="col">Student</th>
+        <th class="thead-light" scope="col">A Long Assignment Name</th>
+        <th class="thead-light" scope="col">Name</th>
+        <th class="thead-light" scope="col">Mid Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for entry in course.get_grades() %}
+      <tr>
+        <th scope="row">{{ entry['student']['name'] }}</td>
+        {% for assignment in entry['assignments'] %}
+        <td data-email="{{ entry['student']['email'] }}" data-title="{{ assignment['assignment']['title'] }}">
+          {{ assignment['score'] }}
+        </td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

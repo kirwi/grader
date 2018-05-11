@@ -1,0 +1,43 @@
+{% extends "bootstrap/base.html" %}
+
+<meta charset="utf-8"/>
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('.static', filename='home.css') }}">
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script src="{{ url_for('.static', filename='home.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <img src="{{ current_user.avatar(80) }}">
+      <h4>{{ current_user.name }}</h4>
+    </div>
+    <ul class="list-unstyled components">
+      <li class="active">
+        <a href="{{ url_for('home') }}">
+          <span class="glyphicon glyphicon-home"></span> Home
+        </a>
+      </li>
+      <li>
+        <a href="{{ url_for('logout') }}">
+          <span class="glyphicon glyphicon-log-out"></span> Logout
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div id="content">
+    <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+      <i class="glyphicon glyphicon-align-left"></i>
+    </button>
+    {% block page_content %}{% endblock %}
+  </div>
+{% endblock %}
+
+</div>

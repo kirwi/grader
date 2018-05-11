@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
+#sidebar {
+  min-width: 200px;
+  max-width: 200px;
+  min-height: 100vh;
+}
+
+#sidebar.active {
+  margin-left: -200px;
+}
+
+.thead-light {
+  background-color: gray;
+  color: white;
+}
+
+.students {
+  width: 100px;
+}
+
+.grades {
+  width: 50px;
+}

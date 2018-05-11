@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<div class="container">
+  <a href="{{ url_for('logout')}}">Logout</a>
+  <div class="row">
+    <div class="col-md-1"><img src="{{ current_user.avatar(80) }}"></div>
+    <div class="col-md-11">
+      <h3>{{ current_user.name }}</h3>
+      <h4>{{ current_user.email }}</h4>
+    </div>
+  </div>
+  <div class="page-header">
+    <h1>My Courses</h1>
+  </div>
+  <div class="row">
+    {% for course in current_user.get_courses() %}
+    <div class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2>{{ course['title'] }}</h2>
+          <h4>Section: {{course['section']}}</h2>
+          <h4 class="panel-title">{{ course['term'] + " " + course['year']|string }}</h4>
+        </div>
+        <div class="panel-body">
+          <p>{{ course['description'] }}</p>
+          <a href="{{ url_for('course', section=course['section']) }}" class="btn btn-primary">Course home</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
